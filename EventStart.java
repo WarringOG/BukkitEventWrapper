@@ -25,9 +25,13 @@ public class EventStart<T> implements Listener {
         eventExe = new EventExe(this);
     }
 
+    
+    public static <T extends Event> void register(Class<T> clazz, Consumer<T> consumer, JavaPlugin plugin) {
+       register(clazz, consumer, plugin, EventPriority.NORMAL);
+    }
+    
     public static <T extends Event> void register(Class<T> clazz, Consumer<T> consumer, JavaPlugin plugin, EventPriority priority) {
        EventStart start = new EventStart(clazz, consumer, plugin, priority);
        start.getEventExe().dispatch();
     }
-
 }
